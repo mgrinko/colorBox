@@ -1,6 +1,8 @@
 "use strict";
 
-function ColorBox(options) {
+alert("Работает, чи нет?");
+
+/*function ColorBox(options) {
 
 	var currentColor = {red: 0,
 						green: 0,
@@ -145,3 +147,4 @@ function Slider(options) {
 		elem.dispatchEvent(sliderEvent);
 	};
 };
+*/
