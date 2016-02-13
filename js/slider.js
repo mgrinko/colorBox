@@ -1,6 +1,8 @@
 "use strict";
 
-alert("Работает, чи нет?");
+function myAlert() {
+	alert("Работает, чи нет?");
+};
 
 /*function ColorBox(options) {
 
