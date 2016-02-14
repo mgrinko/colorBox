@@ -12,16 +12,58 @@ body {
 }
 .sideBar{
 	float: left;
-	width: 280px;
+	width: 250px;
 	margin-left: 10px;	
 	background-color: #FFF;
 }
 .workingSpace {
 	float: right;
-	width: 650px;
+	width: 680px;
 	margin-right: 10px;
-	background-color: #FFF;
+	background-color: #FFF0FF;
 }
+  .colorBox {
+	  float: left;
+  }
+	.slidersPanel {
+		float: left;
+		width: 230px;	
+	}
+		.sliderName {
+			float: left;	
+		}
+		.currentValue {
+			float: right;	
+		}		
+		.barWithThumb{
+			clear: both;	
+		}		
+	.standartColors {
+		float: right;
+		width: 200px;		
+	}
+	.screens{
+		float: right;
+		width: 250px;
+	}
+	  .currentScreen{
+		  height: 200px;
+		  background-color: #FF0000;
+	  }	
+	  .lastScreen {
+		  height: 100px;
+		  background-color: #00FF00;
+	  }		
+	.backgroundsPanel {
+		clear: both;
+		width: 650px;
+		margin: 10px auto;
+	}
+	.bgImage  {
+		width: 140px;
+		height: 140px;
+		margin-left: 10px;
+	}
 .footer {
 	clear: both;
 	font-size: 1em;
