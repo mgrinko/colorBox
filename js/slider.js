@@ -1,6 +1,6 @@
 "use strict";
 
-function myAlert() {
+function PageController() {
 	alert("Работает, чи нет?");
 };
 
