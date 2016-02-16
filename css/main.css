@@ -73,16 +73,7 @@ body {
 		.standartColors td {
 			width: 66px;
 			height: 31px;
-		}
-		.c000{ background-color: rgb(0,0,0);} 	    .c001{ background-color: rgb(0,0,122);}     .c002{ background-color: rgb(0,0,255);}		
-		.c010{ background-color: rgb(0,122,0);}     .c011{ background-color: rgb(0,122,122);}   .c012{ background-color: rgb(0,122,255);}		
-		.c020{ background-color: rgb(0,255,0);}     .c021{ background-color: rgb(0,255,122);}   .c022{ background-color: rgb(0,255,255);}		
-		.c100{ background-color: rgb(122,0,0);}     .c101{ background-color: rgb(122,0,122);}   .c102{ background-color: rgb(122,0,255);}
-		.c110{ background-color: rgb(122,122,0);}   .c111{ background-color: rgb(122,122,122);} .c112{ background-color: rgb(122,122,255);}	
-		.c120{ background-color: rgb(122,255,0);}	.c121{ background-color: rgb(122,255,122);}	.c122{ background-color: rgb(122,255,255);}	
-		.c200{ background-color: rgb(255,0,0);} 	.c201{ background-color: rgb(255,0,122);}	.c202{ background-color: rgb(255,0,255);}	
-		.c210{ background-color: rgb(255,122,0);} 	.c211{ background-color: rgb(255,122,122);} .c212{ background-color: rgb(255,122,255);}
-		.c220{ background-color: rgb(255,255,0);}  	.c221{ background-color: rgb(255,255,122);}	.c222{ background-color: rgb(255,255,255);}				
+		}			
 	.screens{
 		float: right;
 		width: 250px;
@@ -91,13 +82,15 @@ body {
 		  height: 200px;
 		  background-color: #555555;
 	  }	
-		.currentScreen{
+		.currentColorScreen{
 			height: 200px;
-			background-color: #555500;
+			background-color: rgba(150,150,0,0.5);
 		}		  
-	  .lastScreen {
+	  .lastColorScreen {
 		  height: 100px;
 		  background-color: #999999;
+		  font-size: 25px;
+		  text-align: center;
 	  }		
 	.backgroundsPanel {
 		clear: both;

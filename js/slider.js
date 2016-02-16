@@ -1,152 +1,85 @@
 "use strict";
-
+/* ------------------ КОНТРОЛЛЕР УПРАВЛЕНИЯ СТРАНИЦЕЙ ЦЕЛИКОМ (ГЛАВНЫЙ) ----------------------- */
 function PageController() {
-	alert("Работает, чи нет?");
+/* Инициализация экрана предыдущего цвета в черный                                             */
+	setLastColorScreen("rgb(0,0,0)");
+	
+/* Создание боковой палитры стандартных цветов и инициализация "слушателя" на ней              */
+	createBGCTable(document.querySelector(".standartColors"));
+	document.querySelector(".standartColors").addEventListener("click", setLastColor)
+	
+/* Установка фонового изображения и инициализация "слушателя" на панели фоновых изображений    */
+	setScreenBackground("url(images/black.png)");
+	document.querySelector(".backgroundsPanel").addEventListener("click", setBackground);
 };
-
-/*function ColorBox(options) {
-
-	var currentColor = {red: 0,
-						green: 0,
-						blue: 0},
-		elem = document.getElementById(options.elemId);
-	
-	if (!elem) render();
-	
-	function render() {
-	
-		var screen,
-		    sliders = [];
-		
-		elem = document.createElement('div');
-		elem.id = options.elemId;
-		document.body.appendChild(elem);
-		screen = document.createElement('div');
-		screen.classList.add('screen');
-		elem.appendChild(screen);
-		
-		for(var i = 0; i < options.sliders.length; i++) {
-			sliders[i] = new Slider ({	tmpl: options.tmpl,
-										container: elem,
-										name: options.sliders[i].colorName});							
-		};	
-	};
-
-	elem.addEventListener("sliderMove", sliderMoveHandler);
-	
-	function sliderMoveHandler(e) {
-	
-		var screen = document.querySelector(".screen");
-		
-		if(e.detail.colorName === "RED"){
-			currentColor.red = e.detail.colorValue;
-		};
-		if(e.detail.colorName === "GREEN"){
-			currentColor.green = e.detail.colorValue;
-		};		
-		if(e.detail.colorName === "BLUE"){
-			currentColor.blue = e.detail.colorValue;
-		};
-		
-		var rgbColor = 'rgb(' + currentColor.red + ',' + currentColor.green + ',' + currentColor.blue + ')';
-	
-	    screen.style.backgroundColor = rgbColor;
+/* --------------------------------------------------------------------------------------------*/
+/* ------------------------ ФУНКЦИИ - "СЛУШАТЕЛИ"  ЭЛЕМЕНТОВ ИНТЕРФЕЙСА ---------------------- */
+/* --------- Установщик цвета экрана предыдущего цвета по нажатию на "палитру" --------------- */
+	function setLastColor(e) {		
+		if(!(e.target.tagName === "TD")) return;
+		setLastColorScreen(e.target.getAttribute("data-color"));
+	};	
+/* --------- Установщик фонового рисунка на основном экране по нажатию на картинку снизу ----- */	
+	function setBackground(e) {		
+       if(!(e.target.tagName === "IMG")) return;
+	   setScreenBackground(e.target.getAttribute("data-image"));		
 	};		
-};
-
-function Slider(options) {
-	
-	var markerWidth,
-		barWidth,		
-		coords = {};
+/* --------------------------------------------------------------------------------------------*/
+/* ------------- ФУНКЦИИ СОЗДАНИЯ И ИНИЦИАЛИЗАЦИИ ЭЛЕМЕНТОВ ИНТЕРФЕЙСА ----------------------- */
+/* ---------------- Функция формирования боковой палитры стандартных цветов ------------------ */	
+	function createBGCTable(container) {
+		
+		var tableElement,
+			tbodyElement,
+			trElement,
+			tdElement,
+			currentColor,
+			colorNums = [0, 123, 255];
+		
+		tableElement = document.createElement("table");
+		tbodyElement = document.createElement("tbody");
+		tableElement.appendChild(tbodyElement);
+		
+		for (var i = 0; i < 3; i++) {
+		
+			for (var j = 0; j < 3; j++) {
 			
-	if (!options.container.querySelector("."+options.name)) {
-		options.container.appendChild(render());
+				trElement = document.createElement("tr");
+				for (var k = 0; k < 3; k++) {
+					currentColor = "rgb(" + colorNums[i] +"," + colorNums[j] +"," + colorNums[k] +")"
+					tdElement = document.createElement("td");
+					tdElement.setAttribute("data-color", currentColor);
+					tdElement.style.backgroundColor = currentColor;
+					trElement.appendChild(tdElement);
+				};
+				tbodyElement.appendChild(trElement);
+			};	
+		};		
+		container.appendChild(tableElement);			
 	};
-
-	var elem = options.container.querySelector("."+options.name);	
-	var bar = elem.querySelector(".bar");
-	var marker = elem.querySelector(".marker");
-	var resultWindow = elem.querySelector(".current-value");	
+/* ----------- Функция установки выбранного цвета на экране предыдущего цвета ---------------- */			
+	function setLastColorScreen(str) {
 		
-	elem.addEventListener("mousedown", mousedownHandler);	
+		var screen = document.querySelector(".lastColorScreen");
+		var colors = str.slice(4, -1).split(",");
 		
-	function mousedownHandler(e) {
-		if(e.target !== marker) return;
+		screen.style.backgroundColor = str;
 		
-			document.onmousedown = function (){
-				return false;
-			};
-			document.addEventListener("mousemove", mousemoveHandler);
-			document.addEventListener("mouseup", mouseupHandler);
-			
-			var barCoords = bar.getBoundingClientRect();
-			var markerCoords = marker.getBoundingClientRect();
-
-			markerWidth = markerCoords.right - markerCoords.left;
-			barWidth = barCoords.right - barCoords.left;
-			
-			coords.toLeft = markerCoords.left - barCoords.left;
-			coords.toRigth = barCoords.right - markerCoords.right;	
-			coords.toStart = e.clientX;
-			coords.shift = e.clientX - markerCoords.left;
-			coords.borderLeft = barCoords.left;
-	};
-		
-	function mousemoveHandler(e) {	
-		moveMarker(e.clientX);
-	};
-	
-	function mouseupHandler(e) {
-	
-		moveMarker(e.clientX);	
-		
-		document.removeEventListener("mousemove", mousemoveHandler);
-		document.removeEventListener("mouseup", mouseupHandler);
-		document.onmousedown = null;
-	};
-	
-	function render() {
-	
-		var slider;
-
-		slider = document.createElement('div');
-		slider.classList.add("slider-box");
-		slider.classList.add(options.name);
-		slider.innerHTML = options.tmpl({name: options.name});
-		
-		return slider;
-	};
-	
-	function moveMarker(newX) {
-		
-		var deltaX = newX - coords.toStart;
-		var leftSide;
-		
-		if (deltaX < 0) {
-			if(Math.abs(deltaX) > coords.toLeft) {
-				leftSide = 0;
+		for(var i = 0; i < 3; i++) {
+			if(+colors[i] < 123) {
+				colors[i] = 255;
 			} else {
-				leftSide = coords.toStart - coords.borderLeft + deltaX - coords.shift;
-			};
-		} else {
-			if( deltaX > coords.toRigth) {
-				leftSide = Math.floor(barWidth - markerWidth);
-			} else {
-				leftSide = coords.toStart - coords.borderLeft + deltaX - coords.shift;			
+				colors[i] =0;
 			};
 		};
 		
-		marker.style.left = leftSide + "px"; 
-		var currentValue = Math.round(255 * leftSide / (barWidth-markerWidth));
-		resultWindow.innerHTML =  currentValue;
-		
-		var sliderEvent = new CustomEvent("sliderMove", {
-								bubbles: true,
-								detail: {colorName: options.name,
-										 colorValue: currentValue}
-								});
-		elem.dispatchEvent(sliderEvent);
+		screen.style.color = "rgb(" + colors[0] +"," + colors[1] +"," + colors[2] +")"; 
+		screen.innerHTML = "</br>" + str;
 	};
-};
-*/
+/* ----------- Функция установки фонового изображения на основном эеране --------------------- */	
+	function setScreenBackground(str) {	
+		var screen = document.querySelector(".currentScreenBG");	
+		screen.style.backgroundImage = str; 
+	};
+/* --------------------------------------------------------------------------------------------*/
+	
