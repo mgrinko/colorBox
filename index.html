@@ -16,28 +16,7 @@
 	<div class="sideBar">Боковая панель с информацией о работе программы и интерактивным окном динамической подсказки</div>
 	<div class="workingSpace">
 	  <div class="colorBox">	
-	    <div class="slidersPanel">
-		  <div class="slider">
-		    <div class="sliderName">Название 1</div>
-		    <div class="currentValue">Значение 1</div>
-		    <div class="bar"><div class="marker"></div></div>
-		  </div>
-		  <div class="slider">
-		    <div class="sliderName">Название 1</div>
-		    <div class="currentValue">Значение 1</div>
-		    <div class="bar"></div>
-		  </div>		
-		  <div class="slider">
-		    <div class="sliderName">Название 1</div>
-		    <div class="currentValue">Значение 1</div>
-		    <div class="bar"></div>
-		  </div>		
-		  <div class="slider">
-		    <div class="sliderName">Название 1</div>
-		    <div class="currentValue">Значение 1</div>
-		    <div class="bar"></div>
-		  </div>		
-	    </div>
+	    <div class="slidersPanel"></div>
 		<div class="screens">
 		  <div class="currentScreenBG"> 
 			<div class="currentColorScreen">TEST</div>
@@ -50,21 +29,26 @@
 	  </div>
 	  <div class="backgroundsPanel">
 	    <h2>ВАРИАНТЫ ФОНОВЫХ ИЗОБРАЖЕНИЙ ДЛЯ АНАЛИЗА ПРОЗРАЧНОСТИ</h2>
-		<img src="images/black.png" class="bgImage" data-image= "url(images/black.png)"  alt="Варианты фонового рисунка">
-		<img src="images/white.png" class="bgImage" data-image= "url(images/white.png)"  alt="Варианты фонового рисунка">		
-		<img src="images/BaW.png"   class="bgImage" data-image= "url(images/BaW.png)"    alt="Варианты фонового рисунка">
-		<img src="images/color.png" class="bgImage" data-image= "url(images/color.png)"  alt="Варианты фонового рисунка">	
+		<img src="images/black.png" class="bgImage" data-image="url(images/black.png)"  alt="Варианты фонового рисунка">
+		<img src="images/white.png" class="bgImage" data-image="url(images/white.png)"  alt="Варианты фонового рисунка">		
+		<img src="images/BaW.png"   class="bgImage" data-image="url(images/BaW.png)"    alt="Варианты фонового рисунка">
+		<img src="images/color.png" class="bgImage" data-image="url(images/color.png)"  alt="Варианты фонового рисунка">	
 	  </div>
 	</div> 
 	<div class="footer">Тут будем хвастаться, тем кто эту прелесть понаписал</div>
   </div> 
   
- <script>
+  <script type="text/template" id="slider-template">
+	 <div class="sliderName"><%-name%></div>
+	 <div class="currentValue">0</div>
+	 <div class="bar">
+		<div class="marker"></div>
+	 </div>            
+  </script>
  
-	'use strict';
-	
+ <script>
+	'use strict';	
 	var allController = new PageController();	
-
   </script>
   
 </body>
