@@ -73,7 +73,6 @@ function PageController() {
 	};
 	
 };
-
 /* --------------------------------------------------------------------------------------------*/
 /* ------------------------ ФУНКЦИИ - "СЛУШАТЕЛИ"  ЭЛЕМЕНТОВ ИНТЕРФЕЙСА ---------------------- */
 /* --------- Установщик цвета экрана предыдущего цвета по нажатию на "палитру" --------------- */
@@ -102,8 +101,7 @@ function PageController() {
 	function hideTooltip(e){
 		var tooltipScreen = document.querySelector(".tooltip");
 		tooltipScreen.innerHTML = "</br></br></br>Наведите курсор на элементы управления для получения подсказки";
-	};
-	
+	};	
 /* --------------------------------------------------------------------------------------------*/
 /* ------------- ФУНКЦИИ СОЗДАНИЯ И ИНИЦИАЛИЗАЦИИ ЭЛЕМЕНТОВ ИНТЕРФЕЙСА ----------------------- */
 /* ---------------- Функция формирования боковой палитры стандартных цветов ------------------ */	
@@ -165,7 +163,6 @@ function PageController() {
 		var screen = document.querySelector(".currentColorScreen");	
 		screen.style.backgroundColor = 'rgba(' + colors.join(',') + ')'; 
 	};	
-	
 /* ----------- Функция построения 4 слайдеров  в DOM  --------------------------------------- */
 	function renderSlidersPanel(sliders) {	
 		
@@ -190,8 +187,7 @@ function PageController() {
 									 elem: elem
 									});
 		};
-	};
-	
+	};	
 /* ----------- Функция-конструктор для слайдера с функциональностью -------------------------- */	
 	function Slider(options) {
 	
@@ -278,8 +274,7 @@ function PageController() {
 			
 			marker.style.left = options.initValue * (coords.barWidth - coords.markerWidth) / maxValue + 'px';
 			elem.querySelector(".currentValue").innerHTML = options.initValue;
-		};
-		
+		};		
 	};
 /* --------------------------------------------------------------------------------------------*/
 

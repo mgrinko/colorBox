@@ -191,17 +191,14 @@ body {
 	.footer img{
 		margin-bottom: -3px;
 	}
-	.footer  button{
+	.footer  a{
 		float: right;
-		margin-right: 3px;
-		margin-top: -2px;
+		margin-right: 10px;			
+		text-decoration: none;
+		font-size: 13px;
+		font-weight: bold;
+		color: rgb(80,0,0);	
 	}
-		.footer  button a{
-			text-decoration: none;
-			font-size: 13px;
-			font-weight: bold;
-			color: rgb(80,0,0);	
-		}
-		.footer  button a:hover{
-			color: rgb(255,163,0);			
-		}
+	.footer  a:hover{
+		color: rgb(255,163,0);			
+	}
